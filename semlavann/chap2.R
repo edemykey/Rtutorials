@@ -18,3 +18,21 @@ Y ~~ z*Y
 # fit the model
 regression.fit <- sem(regression.model, sample.cov=regression.cor, sample.nobs=1000)
 summary(regression.fit, rsquare=TRUE)
+
+
+
+##Example: Indirect Effects
+
+# input data
+beaujean.cov <- lower2full(c(648.07, 30.05, 8.64, 140.18, 25.57, 233.21))
+colnames(beaujean.cov) <- rownames(beaujean.cov) <- c("salary", "school", "iq")
+
+# specify the path model
+beaujean.model <- '
+salary ~ a*school + c*iq
+iq ~ b*school # this is reversed in first printing of the book 
+ind:= b*c 
+'
+# estimate parameters
+beaujean.fit <- sem(beaujean.model, sample.cov=beaujean.cov, sample.nobs=300)
+summary(beaujean.fit)

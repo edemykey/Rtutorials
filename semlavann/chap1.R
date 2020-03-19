@@ -72,3 +72,6 @@ leveneTest(WLP, Lg,center="mean")
 leveneTest(WLP,Lg,center="median")
 
 
+## correlations table would applea here
+
+## general steps involved in this project
